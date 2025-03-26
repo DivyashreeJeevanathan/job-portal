@@ -1,63 +1,114 @@
-import { useState } from "react";
-import "./Signup.css"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Signup.css";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(false);
+  const [role, setRole] = useState("recruiter"); // Default role
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Signup with:", { email, password, remember });
+  const API_URL = import.meta.env.VITE_API_URL;
+
+const handleSignup = async () => {
+  try {
+    console.log("📤 Sending Data to Backend:", { email, password, role });
+
+    const response = await fetch(`${API_URL}/api/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include", // Only needed if using cookies for authentication
+      body: JSON.stringify({ email, password, role }), // Ensure this matches backend schema
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("✅ Signup Successful:", data);
+    } else {
+      console.error("❌ Signup Failed:", data.message || "Unknown error");
+    }
+  } catch (error) {
+    console.error("❌ Error Signing Up:", error);
+  }
+};
+
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:5000/auth/google";
   };
 
   return (
     <div className="signup-container">
-      <h1 className="signup-title">Step into success—one click away! 🚀</h1>
+      <div><p className="signup-text">Step into success—one click away! 🚀</p></div>
       <div className="signup-card">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSignup}>
           <input
             type="email"
-            placeholder="Email or phone number"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="signup-input"
             required
           />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="signup-input"
-            required
-          />
-          <div className="signup-checkbox">
+
+          <div className="password-container">
             <input
-              type="checkbox"
-              checked={remember}
-              onChange={() => setRemember(!remember)}
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="signup-input"
+              required
             />
-            <label>Remember me</label>
+            <button
+              type="button"
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "hide" : "show"}
+            </button>
           </div>
-          <button type="submit" className="signup-btn">
-            Agree & Join
-          </button>
+
+          <div className="role-label">
+            Choose your role:
+          </div>
+
+          <div className="role-selection">
+            <label>
+              <input
+                type="radio"
+                name="role"
+                value="recruiter"
+                checked={role === "recruiter"}
+                onChange={() => setRole("recruiter")}
+              />
+              Recruiter
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="role"
+                value="candidate"
+                checked={role === "candidate"}
+                onChange={() => setRole("candidate")}
+              />
+              Candidate
+            </label>
+          </div>
+
+          <button type="submit" className="signup-btn">Sign Up</button>
         </form>
 
         <div className="or-divider">or</div>
 
-        <button className="alt-signup-btn">
+        <button className="alt-signup-btn" onClick={handleGoogleLogin}>
           <img src="https://www.svgrepo.com/show/303108/google-icon-logo.svg" alt="Google" />
           Continue with Google
         </button>
-        <button className="alt-signup-btn">
-          <img src="https://www.svgrepo.com/show/354202/microsoft-icon.svg" alt="Microsoft" />
-          Continue with Microsoft
-        </button>
 
         <p className="signin-link">
-          Already on Job Portal? <a href="#">Sign in</a>
+          Already on Job Portal? <a href="/login">Sign in</a>
         </p>
       </div>
     </div>
