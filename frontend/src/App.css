@@ -1,42 +1,159 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+.app-container {
+  background: #f3f2ef;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  font-size: 24px;
+  font-weight: bold;
+  color: #0073b1;
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
+.header-nav {
+  display: flex;
+  gap: 15px;
+}
+
+.sign-in {
+  text-decoration: none;
+  color: white;
+  background: #0073b1;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: background 0.3s ease;
+}
+
+.sign-in:hover {
+  background: #005580;
+}
+
+/* Main Content */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  gap: 5%;
+  padding: 5% 10%;
+}
+
+/* Left Section */
+.left-section {
+  max-width: 450px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.left-section h1 {
+  font-size: 38px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.login-buttons button {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.2s;
+}
+
+.login-buttons button:hover {
+  transform: scale(1.02);
+}
+
+.google-btn {
+  background: #4285F4;
+  color: white;
+}
+
+.google-btn img {
+  width: 18px;
+}
+
+.email-btn {
+  background: #0073b1;
+  color: white;
+}
+
+.email-btn img {
+  width: 18px;
+}
+
+/* Terms & Conditions */
+.terms-text {
+  font-size: 12px;
+  margin-top: 10px;
+  color: #555;
+}
+
+.terms-text a {
+  color: #0073b1;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Right Section */
+.right-section img {
+  width: 500px;
+  max-width: 100%;
+  border-radius: 10px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+      opacity: 0;
+      transform: translateY(-10px);
   }
   to {
-    transform: rotate(360deg);
+      opacity: 1;
+      transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Responsive */
+@media (max-width: 768px) {
+  .content {
+      flex-direction: column;
+      text-align: center;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .right-section {
+      display: none;
+  }
 
-.read-the-docs {
-  color: #888;
+  .sign-in {
+      padding: 8px 16px;
+  }
 }

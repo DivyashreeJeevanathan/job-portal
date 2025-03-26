@@ -1,29 +1,18 @@
 import React from "react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
-import Signup from "./pages/auth/Signup";  
-import RecruiterDashboard from "./pages/recruiter/Dashboard"; 
-import CandidateBrowseJobs from "./pages/candidate/BrowseJobs"; 
+import { Routes, Route, Link } from "react-router-dom";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
+import Home from "./pages/Home"; // Create a separate Home page
+import "./App.css"; // Import styles
 
 const App = () => {
-    const location = useLocation();  // Get the current route path
-
     return (
-        <div>
-            <h1>Job Portal</h1>
-            
-            {/* Hide Navbar on the Signup Page */}
-            {location.pathname !== "/signup" && (
-                <nav>
-                    <Link to="/recruiter/dashboard">Recruiter Dashboard</Link> | 
-                    <Link to="/candidate/browse-jobs">Browse Jobs</Link> | 
-                    <Link to="/signup">Sign Up</Link>
-                </nav>
-            )}
-
+        <div className="app-container">
             <Routes>
+                {/* Define all routes */}
+                <Route path="/" element={<Home />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
-                <Route path="/candidate/browse-jobs" element={<CandidateBrowseJobs />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </div>
     );
