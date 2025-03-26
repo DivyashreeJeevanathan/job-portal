@@ -1,0 +1,201 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Login Page Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f3f2ef;
+    padding: 5% 10%;
+}
+
+/* Card Container */
+.login-card {
+    width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Headings */
+.login-card h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.login-card p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: #fafafa;
+    transition: all 0.3s ease;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+input:focus {
+    border-color: #0073b1;
+    background: white;
+    box-shadow: 0px 0px 5px rgba(0, 115, 177, 0.3);
+}
+
+/* Error Handling */
+.input-error {
+    border-color: red !important;
+    background: #ffe6e6;
+}
+
+.error-message {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Buttons */
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-btn img {
+    width: 18px;
+}
+
+/* Button Colors */
+.google-btn {
+    background: #4285F4;
+    color: white;
+}
+
+.submit-btn {
+    background: #0073b1;
+    color: white;
+}
+
+/* Hover Effects */
+.login-btn:hover {
+    transform: scale(1.03);
+}
+
+.google-btn:hover {
+    background: #357ae8;
+}
+
+.submit-btn:hover {
+    background: #005580;
+}
+
+/* Divider */
+.divider {
+    margin: 15px 0;
+    color: #888;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 1px;
+    background: #ccc;
+    top: 50%;
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+/* Footer */
+.login-footer {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-footer p {
+    color: #333;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: #0073b1;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-container {
+        text-align: center;
+        padding: 5% 8%;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
